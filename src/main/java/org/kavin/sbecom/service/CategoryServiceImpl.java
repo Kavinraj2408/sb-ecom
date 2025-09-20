@@ -41,7 +41,6 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Resource with id " + id +
                         " Not Found"));
         updateCategory.setCategoryName(category.getCategoryName());
-        categories.add(updateCategory);
         return "Category with id " + id +  " updated successfully";
     }
 }
