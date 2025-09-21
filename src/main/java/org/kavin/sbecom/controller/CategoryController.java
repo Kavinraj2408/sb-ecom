@@ -1,5 +1,6 @@
 package org.kavin.sbecom.controller;
 
+import jakarta.validation.Valid;
 import org.kavin.sbecom.model.Category;
 import org.kavin.sbecom.service.CategoryService;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/add-category")
-    public ResponseEntity<String> addCategory(@RequestBody Category category) {
+    public ResponseEntity<String> addCategory(@Valid @RequestBody Category category) {
         categoryService.addCategory(category);
         return new ResponseEntity<>("Category added successfully", HttpStatus.CREATED);
     }
