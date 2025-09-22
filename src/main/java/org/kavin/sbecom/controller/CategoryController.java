@@ -35,24 +35,14 @@ public class CategoryController {
     @DeleteMapping("/admin/delete-category/{id}")
 //    @RequestMapping(value = "/admin/deleteCategory/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteCategory(@PathVariable long id) {
-        try {
-            String message = categoryService.deleteCategory(id);
-//            return new ResponseEntity<>(message, HttpStatus.OK);
-//            return ResponseEntity.ok(message);
-            return ResponseEntity.status(HttpStatus.OK).body(message);
-        }catch(ResponseStatusException e){
-            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
-        }
+        String message = categoryService.deleteCategory(id);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
     @PutMapping("/admin/update-category/{id}")
     public ResponseEntity<String> updateCategory(@RequestBody Category category,
                                                  @PathVariable long id) {
-        try {
-            String message = categoryService.updateCategory(category,id);
-            return new ResponseEntity<>(message, HttpStatus.OK);
-        }catch(ResponseStatusException e){
-            return new ResponseEntity<>(e.getReason(), e.getStatusCode());
-        }
+        String message = categoryService.updateCategory(category,id);
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }

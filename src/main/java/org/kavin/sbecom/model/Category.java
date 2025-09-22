@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long  categoryId;
 
-    @NotBlank(message = "Category name cannot be blank")
+    @NotBlank(message = "Category name must not be blank")
+    @Size(min=3, message = "Category name must have at least 3 characters")
     private String categoryName;
 
 }
