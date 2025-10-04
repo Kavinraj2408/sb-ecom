@@ -2,7 +2,6 @@ package org.kavin.sbecom.controller;
 
 import jakarta.validation.Valid;
 import org.kavin.sbecom.constant.AppConstant;
-import org.kavin.sbecom.model.Category;
 import org.kavin.sbecom.payload.CategoryDTO;
 import org.kavin.sbecom.payload.CategoryResponse;
 import org.kavin.sbecom.service.CategoryService;
@@ -24,8 +23,10 @@ public class CategoryController {
     @GetMapping("/public/get-categories")
     public ResponseEntity<CategoryResponse> getCategories(
             @RequestParam(name="pageNumber",defaultValue = AppConstant.PAGE_NUMBER,required = false) Integer pageNumber,
-            @RequestParam(name = "pageSize",defaultValue = AppConstant.PAGE_SIZE,required = false) Integer pageSize){
-        return new  ResponseEntity<>(categoryService.getAllCategories(pageNumber,pageSize), HttpStatus.OK);
+            @RequestParam(name = "pageSize",defaultValue = AppConstant.PAGE_SIZE,required = false) Integer pageSize,
+            @RequestParam(name = "sortBy", defaultValue = AppConstant.SORT_CATEGORIES_BY, required = false) String sortBy,
+            @RequestParam(name = "sortOrder", defaultValue = AppConstant.SORT_ORDER, required = false) String sortOrder){
+        return new  ResponseEntity<>(categoryService.getAllCategories(pageNumber,pageSize,sortBy,sortOrder), HttpStatus.OK);
     }
 
     @PostMapping("/admin/add-category")

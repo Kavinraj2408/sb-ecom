@@ -7,7 +7,7 @@ import org.kavin.sbecom.payload.CategoryResponse;
 import java.util.List;
 
 public interface CategoryService {
-    CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize);
+    CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize, String sortBy, String order);
     CategoryDTO addCategory(CategoryDTO categoryDTO);
     CategoryDTO deleteCategory(long id);
 
