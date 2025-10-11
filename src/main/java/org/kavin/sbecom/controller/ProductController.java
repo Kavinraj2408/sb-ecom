@@ -24,11 +24,28 @@ public class ProductController {
         return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
     }
 
-    @GetMapping("/public/get-all-products")
+    @GetMapping("/public/products")
     public ResponseEntity<ProductResponse> getAllProducts() {
         ProductResponse productResponse = service.getAllProducts();
         return new ResponseEntity<>(productResponse, HttpStatus.OK);
     }
 
+    @GetMapping("/public/categories/{categoryId}/products")
+    public ResponseEntity<ProductResponse> getProductsByCategoryId(@PathVariable Long categoryId) {
+        ProductResponse productResponse = service.searchByCategory(categoryId);
+        return new ResponseEntity<>(productResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/public/products/keyword/{keyword}")
+    public ResponseEntity<ProductResponse> getProductsByKayword(@PathVariable String keyword) {
+        ProductResponse productResponse = service.findProductsByKeyWord(keyword);
+        return new ResponseEntity<>(productResponse, HttpStatus.FOUND);
+    }
+    
+    @PutMapping("/admin/products/{productid}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long productid, @RequestBody Product product) {
+        ProductDTO productDTO = service.updateProduct(product,productid);
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
+    }
 
 }

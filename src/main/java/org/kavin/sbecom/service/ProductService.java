@@ -8,4 +8,10 @@ public interface ProductService {
     ProductDTO saveProduct(Product product, Long categoryId);
 
     ProductResponse getAllProducts();
+
+    ProductResponse searchByCategory(Long categoryId);
+
+    ProductResponse findProductsByKeyWord(String keyword);
+
+    ProductDTO updateProduct(Product product, Long productid);
 }
